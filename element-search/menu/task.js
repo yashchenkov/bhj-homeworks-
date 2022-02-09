@@ -1,28 +1,36 @@
 const menu_items = Array.from(document.querySelectorAll('.menu__item'));
+const menus_sub = Array.from(document.querySelectorAll('.menu_sub'));
+let flagIsOpened = false;
 
 menu_items.forEach(elem => {
-	elem.addEventListener('click', openMenu);
+	let link = elem.querySelector('.menu__link');
+	if(!elem.querySelector('.menu_sub')) {
+		link.addEventListener('click', console.log('событие клика на обычные ссылки'));
+	} else {
+		link.addEventListener('click', openMenu);
+	}
 });
 
 function openMenu(e) {
-	const elem = this.querySelector('.menu_sub');
-	if (elem) {
-		if(e.target.innerHTML === 'Услуги' || e.target.innerHTML === 'О компании' || e.target.innerHTML === 'Контакты') {
-			e.preventDefault();
-		}
-		isOpened();
-		if(elem.classList.contains('menu_active')){
+	let subMenu = this.closest('.menu__item').querySelector('.menu_sub');
+	e.preventDefault();
+	menus_sub.forEach(elem => {
+		if(elem.classList.contains('menu_active') && subMenu !== elem) {
+			flagIsOpened = true;
 			elem.classList.remove('menu_active');
 		} else {
-			elem.classList.add('menu_active');
+			flagIsOpened = false;
 		}
-	}
+	});
+	subMenu.classList.toggle("menu_active");
 }
 
 function isOpened() {
-	menu_items.forEach(elem => {
+		menu_items.forEach(elem => {
 		if(elem.querySelector('.menu_active')) {
 			elem.querySelector('.menu_active').classList.remove('menu_active');
+
 		}
 	});
 }
+
