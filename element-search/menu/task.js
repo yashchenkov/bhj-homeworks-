@@ -1,12 +1,9 @@
 const menu_items = Array.from(document.querySelectorAll('.menu__item'));
 const menus_sub = Array.from(document.querySelectorAll('.menu_sub'));
-let flagIsOpened = false;
 
 menu_items.forEach(elem => {
 	let link = elem.querySelector('.menu__link');
-	if(!elem.querySelector('.menu_sub')) {
-		link.addEventListener('click', console.log('событие клика на обычные ссылки'));
-	} else {
+	if(elem.querySelector('.menu_sub')) {
 		link.addEventListener('click', openMenu);
 	}
 });
@@ -16,10 +13,7 @@ function openMenu(e) {
 	e.preventDefault();
 	menus_sub.forEach(elem => {
 		if(elem.classList.contains('menu_active') && subMenu !== elem) {
-			flagIsOpened = true;
 			elem.classList.remove('menu_active');
-		} else {
-			flagIsOpened = false;
 		}
 	});
 	subMenu.classList.toggle("menu_active");
