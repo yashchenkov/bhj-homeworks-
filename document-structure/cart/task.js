@@ -40,6 +40,8 @@ function addToCart() {
 	let product = this.closest('.product');
 	if(!isInCart(product.dataset.id)) {
 		let img = product.querySelector('img');
+		img.classList.remove('product__image');
+		img.classList.add('cart__product-image');
 		let quantity = product.querySelector('.product__quantity-value');
 
 

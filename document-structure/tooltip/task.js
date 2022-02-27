@@ -9,7 +9,6 @@ links.forEach(elem => {
 function showTooltip() {
 	event.preventDefault();
 	
-
 	let tooltip = document.createElement('div');
 	tooltip.classList.add('tooltip');
 	tooltip.classList.add('tooltip_active');
