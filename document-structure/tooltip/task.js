@@ -6,8 +6,8 @@ links.forEach(elem => {
 });
 
 
-function showTooltip() {
-	event.preventDefault();
+function showTooltip(e) {
+	e.preventDefault();
 	
 	let tooltip = document.createElement('div');
 	tooltip.classList.add('tooltip');

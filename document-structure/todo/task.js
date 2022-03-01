@@ -4,7 +4,7 @@ const button = document.querySelector('.tasks__add');
 
 
 input.addEventListener('keydown', (e) => {
-	if(event.code === 'Enter') {
+	if(e.key === 'Enter') {
 		if(!isEmpty()){
 			addContent();
 		}
