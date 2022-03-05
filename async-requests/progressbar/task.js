@@ -1,15 +1,35 @@
 const progress = document.getElementById( 'progress' );
-const endLoad = 100791055;
+const buttn = document.querySelector('#send');
+const inp = document.querySelector('#file');
+const form = document.querySelector('#form');
+let formData = new FormData(document.querySelector('#form'));
+
 let xhr = new XMLHttpRequest();
 
-xhr.addEventListener('progress', (e) => {
-	progress.value = e.loaded / endLoad;
-})
+form.addEventListener('submit', (e) => {
+	e.preventDefault();
+	console.log(e);
+	xhr.open('POST', 'https://netology-slow-rest.herokuapp.com/upload.php');
+	xhr.send(formData);
+});
 
-xhr.addEventListener('loadend', (e) => {
-	console.log('finished');
-	console.log(progress.value);
-})
+inp.addEventListener('change', (e) => {
+	formData.append('file', e.srcElement.files[0])
+	console.log(e);
+	console.log(e.srcElement.files[0]);
+});
 
-xhr.open('GET', 'https://netology-slow-rest.herokuapp.com/upload.php');
-xhr.send();
+xhr.upload.onprogress = function(event)  {
+	//console.log(event);
+	progress.value = event.loaded / event.total;
+};
+
+xhr.addEventListener('loadend', () => {
+    if (xhr.status == 200) {
+      console.log("Успех");
+    } else {
+      console.log("Ошибка " + this.status);
+    }
+});
+console.log(form);
+
