@@ -1,14 +1,13 @@
 const editor = document.querySelector('#editor');
-let storage = window.localStorage;
-if(storage.getItem('text') !== null) {
-	editor.value = storage.getItem('text');
+if(localStorage.getItem('text') !== null) {
+	editor.value = localStorage.getItem('text');
 }
 
 editor.addEventListener('input', () => {
-	if(storage.getItem('text') !== null) {
-		storage.clear();
-		storage.setItem('text', editor.value);
+	if(localStorage.getItem('text') !== null) {
+		localStorage.clear();
+		localStorage.setItem('text', editor.value);
 	} else {
-		storage.setItem('text', editor.value);
+		localStorage.setItem('text', editor.value);
 	}
 })

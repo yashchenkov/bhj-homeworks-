@@ -3,7 +3,6 @@ let inpts = document.querySelectorAll('.control');
 const divForm = document.querySelector('.signin');
 const divWelcome = document.querySelector('#welcome');
 const userId = document.querySelector('#user_id');
-let localStorage = window.localStorage;
 
 let xhr = new XMLHttpRequest();
 
@@ -19,8 +18,8 @@ if(!localStorage.getItem('id')) {
 	});
 
 	xhr.addEventListener('load', e => {
+		form.reset();
 		if(JSON.parse(xhr.response).success) {
-			localStorage.clear();
 			localStorage.setItem('id', JSON.parse(xhr.response).user_id);
 			divForm.classList.remove('signin_active');
 			divWelcome.classList.add('welcome_active');

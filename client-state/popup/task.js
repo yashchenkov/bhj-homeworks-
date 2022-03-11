@@ -5,9 +5,10 @@ const closePopup = document.querySelector('.modal__close');
 if(!checkCookie()) {
 	closePopup.addEventListener('click', () => {
 		popup.classList.remove('modal_active')
+		popup.classList.add('modal_active');
+		document.cookie = 'popup=true';
 	});
-	popup.classList.add('modal_active');
-	document.cookie = 'popup=true';
+	
 }
 
 
